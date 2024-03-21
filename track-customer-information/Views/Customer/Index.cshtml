@@ -1,0 +1,36 @@
+﻿@model IEnumerable<track_customer_information.Models.Customer>
+
+@{
+    ViewData["Title"] = "Customer List";
+    // Layout = null;
+}
+
+<body>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Telephone Number</th>
+                    <th>Contact Person Name</th>
+                    <th>Contact Person Email</th>
+                    <th>VAT Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td>@customer.Name</td>
+                        <td>@customer.Address</td>
+                        <td>@customer.TelephoneNumber</td>
+                        <td>@customer.ContactPersonName</td>
+                        <td>@customer.ContactPersonEmail</td>
+                        <td>@customer.VATNumber</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
