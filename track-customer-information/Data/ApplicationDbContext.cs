@@ -10,6 +10,6 @@ namespace track_customer_information.Data
         {
         }
 
-        public DbSet<Customer> Customer { get; set; }
+        public DbSet<CustomerModel> Customer { get; set; }
     }
 }

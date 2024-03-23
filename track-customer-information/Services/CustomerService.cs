@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using track_customer_information.Data;
 using track_customer_information.Interfaces;
 using track_customer_information.Models;
@@ -14,9 +15,21 @@ namespace track_customer_information.Services
             _db = db;
         }
 
-        public async Task<List<Customer>> FetchAllCustomersAsync()
+        public async Task DeleteCustomer(CustomerModel customer)
+        {
+            _db.Customer.Remove(customer);
+
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task<List<CustomerModel>> FetchAllCustomersAsync()
         {
             return await _db.Customer.ToListAsync();
+        }
+
+        public async Task<CustomerModel> GetCustomerById(int id)
+        {
+            return await _db.Customer.FirstOrDefaultAsync(c => c.CustomerID == id);
         }
     }
 }

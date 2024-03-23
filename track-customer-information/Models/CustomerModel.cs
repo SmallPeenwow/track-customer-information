@@ -2,8 +2,9 @@
 
 namespace track_customer_information.Models
 {
-    public class Customer
+    public class CustomerModel
     {
+        [Key]
         public int CustomerID { get; set; }
 
         [Required]
