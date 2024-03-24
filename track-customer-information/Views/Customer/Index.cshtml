@@ -14,30 +14,41 @@
 
 <div>
 
-    <form class="container-lg d-flex align-items-end flex-column" asp-action="Index" method="get">
+    <div class="top-container container-lg mt-4">
+
+        <button class="btn btn-primary">
+            <a asp-action="DynamicView">
+                Create Customer
+            </a>
+        </button>
+
+        <form class="d-flex align-items-end flex-column" asp-action="Index" method="get">
         
-        <div class="mt-2 table-group-container">
-            <div class="form-group">
-                <label for="filterType">Filter By:</label>
-                <select id="filterType" name="filterType" class="form-control">
-                    <option value="">All</option>
-                    <option value="Name">Name</option>
-                    <option value="VATNumber">VAT Number</option>
-                </select>
+            <div class="table-group-container">
+                <div class="form-group">
+                    <label for="filterType">Filter By:</label>
+                    <select id="filterType" name="filterType" class="form-control">
+                        <option value="">All</option>
+                        <option value="Name">Name</option>
+                        <option value="VATNumber">VAT Number</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="filterValue">Value:</label>
+                    <input type="text" id="filterValue" name="filterValue" class="form-control" />
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="filterValue">Value:</label>
-                <input type="text" id="filterValue" name="filterValue" class="form-control" />
+            <div class="mt-3 mb-4">
+                <button type="submit" class="btn btn-primary">Filter</button>
+                <button type="button" id="resetFilter" class="btn btn-outline-dark">Reset</button>
             </div>
-        </div>
 
-        <div class="mt-3 mb-4">
-            <button type="submit" class="btn btn-primary">Filter</button>
-            <button type="button" id="resetFilter" class="btn btn-outline-dark">Reset</button>
-        </div>
+        </form>
 
-    </form>
+    </div>
+
 
     <div class="container-lg">
         <table class="table">
@@ -65,8 +76,8 @@
 
                         <td class="icon-container">
                             <button class="btn btn-outline-primary">
-                                <a asp-action="Edit" asp-route-id="@customerModel.CustomerID">
-                                        <i class="fas fa-edit"></i>
+                                <a asp-action="DynamicView" asp-route-customerId="@customerModel.CustomerID">
+                                    <i class="fas fa-edit"></i>
                                 </a>
                             </button>
 

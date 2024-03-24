@@ -1,0 +1,27 @@
+﻿@model CustomerModel
+
+<h1>Hello</h1>
+
+<div id="dynamicContent"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var viewName = '@ViewBag.ViewName'; // Get the view name from the ViewBag
+
+        function loadView(viewName) {
+            var urlParts = viewName.split('/');
+            var action = urlParts[0];
+            var id = urlParts[1];
+
+            var url = action === 'Edit' ? `/Customer/${action}/${id}` : `/Customer/${action}`;
+            
+            $.get(url, function (data) {
+                $('#dynamicContent').html(data);
+            });
+        }
+
+        // Load the view
+        loadView(viewName)
+    });
+</script>

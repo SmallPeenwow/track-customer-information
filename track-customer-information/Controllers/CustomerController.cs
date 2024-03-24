@@ -80,7 +80,21 @@ namespace track_customer_information.Controllers
                 return NotFound();
             }
 
-            return View(editCustomer);
+            return PartialView("Edit", editCustomer);
+        }
+
+        public IActionResult Create()
+        {
+            return PartialView();
+        }
+
+        public IActionResult DynamicView(int? customerId)
+        {
+            string viewName = customerId.HasValue ? $"Edit/{customerId}" : "Create";
+            
+            ViewBag.ViewName = viewName;
+            
+            return View();
         }
 
         [HttpPost]
