@@ -66,12 +66,36 @@ namespace track_customer_information.Controllers
 
             await _customerService.DeleteCustomer(customer);
 
+            TempData["SuccessMessage"] = "Customer successfully deleted.";
+
             return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            CustomerModel editCustomer = await _customerService.GetCustomerById(id);
+
+            if (editCustomer == null)
+            {
+                return NotFound();
+            }
+
+            return View(editCustomer);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCustomer(CustomerModel customer)
+        {
+            if (ModelState.IsValid)
+            {
+                await _customerService.EditCustomer(customer);
+
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View(customer);
+            }
         }
     }
 }

@@ -18,13 +18,6 @@ html {
 }
 
 body {
-  position: relative;
-}
-
-.footer-container {
-    /*bottom: 0;
-    position: fixed;*/
-    padding: 10px;
-    width: 100%;
-    margin-top: 10px;
+    height: 100vh;
+    position: relative;
 }

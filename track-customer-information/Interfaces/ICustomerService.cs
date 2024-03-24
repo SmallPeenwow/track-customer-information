@@ -9,5 +9,7 @@ namespace track_customer_information.Interfaces
         Task DeleteCustomer(CustomerModel customer);
 
         Task<CustomerModel> GetCustomerById(int id);
+
+        Task EditCustomer(CustomerModel customer);
     }
 }

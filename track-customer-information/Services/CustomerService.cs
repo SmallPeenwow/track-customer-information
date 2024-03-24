@@ -22,6 +22,13 @@ namespace track_customer_information.Services
             await _db.SaveChangesAsync();
         }
 
+        public async Task EditCustomer(CustomerModel customer)
+        {
+            _db.Customer.Update(customer);
+
+            await _db.SaveChangesAsync();
+        }
+
         public async Task<List<CustomerModel>> FetchAllCustomersAsync()
         {
             return await _db.Customer.ToListAsync();

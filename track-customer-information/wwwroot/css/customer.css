@@ -7,5 +7,52 @@
     justify-content: center;
     align-items: center;
     width: 120px;
-    height: 65px; /*Must make inherit with tr later*/
+    height: inherit;
+    border: none;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit-form div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-rows {
+    height: 65px;
+}
+
+.edit-form button {
+    width: 100px;
+}
+
+.table-group-container {
+    width: 450px;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.table-group-container div {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.table-group-container div select,
+.table-group-container div input {
+    cursor: pointer;
+}
+
+.paginate-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
