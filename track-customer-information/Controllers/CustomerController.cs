@@ -93,7 +93,6 @@ namespace track_customer_information.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Convert the email address to lowercase
                 customer.ContactPersonEmail = customer.ContactPersonEmail?.ToLower();
 
                 // Check if the email is already in use
