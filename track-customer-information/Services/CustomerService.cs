@@ -15,6 +15,13 @@ namespace track_customer_information.Services
             _db = db;
         }
 
+        public async Task CreateNewCustomer(CustomerModel customer)
+        {
+            _db.Customer.Add(customer);
+
+            await _db.SaveChangesAsync();
+        }
+
         public async Task DeleteCustomer(CustomerModel customer)
         {
             _db.Customer.Remove(customer);
@@ -32,6 +39,11 @@ namespace track_customer_information.Services
         public async Task<List<CustomerModel>> FetchAllCustomersAsync()
         {
             return await _db.Customer.ToListAsync();
+        }
+
+        public async Task<CustomerModel?> GetCustomerByEmail(string email)
+        {
+            return await _db.Customer.FirstOrDefaultAsync(c => c.ContactPersonEmail == email);
         }
 
         public async Task<CustomerModel> GetCustomerById(int id)

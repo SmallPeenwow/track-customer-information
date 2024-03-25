@@ -62,3 +62,16 @@
     justify-content: space-between;
     align-items: flex-start;
 }
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: white;
+}
+
+.button-default a:-webkit-any-link {
+    color: #0d6efd;
+}
+
+.button-default:hover a:-webkit-any-link {
+    color: white;
+}

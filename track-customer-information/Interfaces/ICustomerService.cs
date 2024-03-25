@@ -11,5 +11,9 @@ namespace track_customer_information.Interfaces
         Task<CustomerModel> GetCustomerById(int id);
 
         Task EditCustomer(CustomerModel customer);
+
+        Task CreateNewCustomer(CustomerModel customer);
+
+        Task<CustomerModel?> GetCustomerByEmail(string email);
     }
 }

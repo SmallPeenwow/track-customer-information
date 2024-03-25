@@ -88,6 +88,32 @@ namespace track_customer_information.Controllers
             return PartialView();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateCustomer(CustomerModel customer)
+        {
+            if (ModelState.IsValid)
+            {
+                // Convert the email address to lowercase
+                customer.ContactPersonEmail = customer.ContactPersonEmail?.ToLower();
+
+                // Check if the email is already in use
+                var existingCustomer = await _customerService.GetCustomerByEmail(customer.ContactPersonEmail);
+               
+                if (existingCustomer != null)
+                {
+                    ModelState.AddModelError("ContactPersonEmail", "The email address is already in use.");
+                }
+                else
+                {
+                    await _customerService.CreateNewCustomer(customer);
+
+                    return Json(new { redirect = true });
+                }
+            }
+
+            return PartialView("Create", customer);
+        }
+
         public IActionResult DynamicView(int? customerId)
         {
             string viewName = customerId.HasValue ? $"Edit/{customerId}" : "Create";
@@ -104,11 +130,11 @@ namespace track_customer_information.Controllers
             {
                 await _customerService.EditCustomer(customer);
 
-                return RedirectToAction(nameof(Index));
+                return Json(new { redirect = true });
             }
             else
             {
-                return View(customer);
+                return PartialView("Edit", customer);
             }
         }
     }
